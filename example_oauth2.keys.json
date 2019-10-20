@@ -1,0 +1,8 @@
+{
+  "web": {
+    "client_id": "8973983820-bkalablajsbiouabsiuaoiabs.apps.googleusercontent.com",
+    "client_secret": "893b982u80-c43c34fc3-34f3vr",
+    "refresh_token": "1/bcag98caiubas908EFHO5kyKc323",
+    "redirect_uris": ["http://localhost:3000/oauth2callback", "https://127.0.0.1:3000"]
+  }
+}
