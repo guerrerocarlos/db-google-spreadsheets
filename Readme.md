@@ -6,7 +6,7 @@ Use Google Spreadsheet as DB and Worksheets as Tables:
 
 Create `oauth2.keys.json` file with your _Google App_ *id* and *secret* as shown in `example_oauth2.keys.json`
 
-You may need a CLIENT_ID, CLIENT_SECRET and REDIRECT_URL. You can find these pieces of information by going to the [Developer Console](https://console.developers.google.com/), clicking your project --> APIs & auth --> credentials.
+You may need a CLIENT_ID, CLIENT_SECRET and REDIRECT_URL. You can find these pieces of information by going to the [Developer Console](https://console.developers.google.com/), clicking `your project --> APIs & auth --> credentials`.
 
 Then execute `quickstart.js` file to get the `oauth2.token.json` file and use the module.
 
