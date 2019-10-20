@@ -94,5 +94,5 @@ The first row is reserved for the column names, so that order of columns and row
 
 This first row can be hidden for better visualization with `right-click -> hide Row`:
 
-![Hide first Row](https://user-images.githubusercontent.com/82532/67162823-e02d0400-f35f-11e9-8b1e-c87d1fd2a1f9.png  "Hide first Row")
+![Hide first Row](https://user-images.githubusercontent.com/82532/67162855-4154d780-f360-11e9-95a5-b9b906b85fc3.png  "Hide first Row")
 
