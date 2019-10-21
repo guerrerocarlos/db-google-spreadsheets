@@ -2,21 +2,10 @@ const { google } = require("googleapis");
 const path = require("path");
 const fs = require("fs");
 var intToExcelCol = require("./intToExcelCol");
-
 const keyfile = path.join(__dirname, "./oauth2.keys.json");
-const keys = JSON.parse(fs.readFileSync(keyfile));
-
 const tokenfile = path.join(__dirname, "./oauth2.token.json");
-const token = JSON.parse(fs.readFileSync(tokenfile));
 
-const oAuth2Client = new google.auth.OAuth2(
-  keys.web.client_id,
-  keys.web.client_secret
-);
-
-oAuth2Client.setCredentials(token);
-
-const sheets = google.sheets({ version: "v4", auth: oAuth2Client });
+let sheet 
 
 async function createSS(params) {
   var spreadsheetBody = {
@@ -245,7 +234,19 @@ async function getRows() {
   return objs;
 }
 
-function Spreadsheet(params) {
+function Spreadsheet(params, creds) {
+  if (!sheet) {
+    let keys = creds.keys || JSON.parse(fs.readFileSync(keyfile));
+    let token = creds.token || JSON.parse(fs.readFileSync(tokenfile));
+
+    const oAuth2Client = new google.auth.OAuth2(
+      keys.web.client_id,
+      keys.web.client_secret
+    );
+    oAuth2Client.setCredentials(token);
+    sheets = google.sheets({ version: "v4", auth: oAuth2Client });
+  }
+
   var s = function(attribs) {
     if (attribs) {
       return newRow.call(s, attribs);
@@ -291,7 +292,7 @@ if (require.main == module) {
     // console.log("properties", await sheet.metadata());
 
     var rows = await sheet();
-    console.log(rows)
+    console.log(rows);
     // rows[0].useCount++
     // rows[0].date = formatDate(new Date());
 
@@ -324,6 +325,5 @@ if (require.main == module) {
     //     useCount: 19
     // });
     // await newRow.save();
-
   })();
 }
