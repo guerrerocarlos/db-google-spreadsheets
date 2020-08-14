@@ -1,6 +1,6 @@
 {
-  "name": "db-google-spreadsheet",
-  "version": "0.1.0",
+  "name": "db-google-spreadsheets",
+  "version": "0.1.3",
   "description": "Use Google Spreadsheets as DB for simple projects",
   "main": "index.js",
   "author": "Carlos Guerrero <guerrerocarlos@gmail.com>",

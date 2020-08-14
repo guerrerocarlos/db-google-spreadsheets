@@ -39,7 +39,7 @@ function updateSS(params) {
   return sheets.spreadsheets.values.update({
     spreadsheetId: params.spreadsheetId,
     range: intToExcelCol(params.startRow || 0) + (params.startRow + 1),
-    valueInputOption: "USER_ENTERED",
+    valueInputOption: params.valueInputOption || "USER_ENTERED",
     resource: {
       majorDimension: "ROWS",
       values: params.values
@@ -51,7 +51,7 @@ function batchUpdateSS(params, datumsToUpdate) {
   var batchPayload = {
     spreadsheetId: params.spreadsheetId,
     resource: {
-      valueInputOption: "USER_ENTERED",
+      valueInputOption: params.valueInputOption || "USER_ENTERED",
       data: datumsToUpdate.map(datum => ({
         range:
           (params.worksheetName ? `${params.worksheetName}!` : "") +
@@ -213,7 +213,7 @@ function newRow(datum) {
 
 async function getRows() {
   let arrayData = await getSpreadsheet(this.__params);
-
+  
   this.__columnNames = arrayData.shift();
 
   arrayData.shift(); // skip human readable labels
@@ -279,51 +279,3 @@ function formatDate(date) {
 module.exports = {
   Spreadsheet
 };
-
-if (require.main == module) {
-  (async () => {
-    var params = {
-      spreadsheetId: "1AwPH8WW3avCczXwhFYQ-AMhfSSABjO3W6pUmtqDBztk",
-      worksheetName: "Users"
-    };
-
-    var sheet = Spreadsheet(params);
-
-    // console.log("properties", await sheet.metadata());
-
-    var rows = await sheet();
-    console.log(rows);
-    // rows[0].useCount++
-    // rows[0].date = formatDate(new Date());
-
-    // await rows[0].save();
-
-    // var newRow = sheet({
-    //   email: "three@test.com",
-    //   useCount: 0
-    // });
-    // await newRow.save();
-
-    // var newRow = sheet({
-    //     email: "four@test.com",
-    //     name: "Carlos",
-    //     useCount: 0
-    //   });
-    //   await newRow.save();
-
-    // var rows = await sheet();
-
-    // var editRow = rows.filter((row) => row.email === 'two@test.com')[0]
-    // editRow.useCount++;
-    // editRow.date = '20/10/2019'
-
-    // editRow.save()
-
-    // var newRow = sheet({
-    //     email: "yo@brother.com",
-    //     lastName: 'steward',
-    //     useCount: 19
-    // });
-    // await newRow.save();
-  })();
-}
