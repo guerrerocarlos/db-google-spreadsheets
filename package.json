@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Carlos Guerrero <guerrerocarlos@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/guerrerocarlos/db-google-spreadsheets.git"
+  },
   "dependencies": {
     "googleapis": "^44.0.0"
   },
